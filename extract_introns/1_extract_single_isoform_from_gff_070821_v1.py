@@ -140,7 +140,7 @@ maxRNAdic = select_rna(rnaDic)
 
 
 
-outfile = open('Obir_maxlen_isoform_geneID_num.txt','w')
+outfile = open('Obir_maxlen_isoform_geneID_11868.txt','w')
 for geneID in maxRNAdic.keys():
     rnaID = maxRNAdic[geneID].split('@')[0]
     print(rnaID,geneID,sep='\t',file=outfile)
