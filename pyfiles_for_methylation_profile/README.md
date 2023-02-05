@@ -9,4 +9,7 @@ output:
 
 # 2_methyl_Metaplot_v2_for_Ant_070621.py
 
-usage: python3 2_methyl_Metaplot_v2_for_Ant_070621.py <gff.bed> <>
+usage: python3 2_methyl_Metaplot_v2_for_Ant_070621.py <gff.bed file> <size.genome file> <tsv.cw.bed file> <OUTPREFIX>
+
+input:
+output: 
