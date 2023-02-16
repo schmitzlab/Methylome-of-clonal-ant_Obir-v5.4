@@ -5,9 +5,9 @@ this code only considers the cytosines that has larger than 4 mapped reads (cut 
 
 usage: python3 1_cg_ratio_ant_gff_introns_062921_v3.2.py <'directory name'>
 
-> make a directory and then put all of the <allc.tsv> files which need to be analyzed into that directory
+> make a directory and then put all of the <sample_chr.tsv> files which need to be analyzed into that directory, and then run this code.
 
-input: multiple <allc.tsv> files in the specific directory
+input: multiple <sample_chr.tsv> files in the specific directory
 
 output: output1_Obir_genesTE_CG_ratio_co5_intron_070121.txt
 
