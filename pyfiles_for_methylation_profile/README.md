@@ -1,11 +1,12 @@
 # 1_cg_ratio_ant_gff_introns_062921_v3.2.py
+description: calculate mCG ratio for each genomic contents such as;
+'Genome','Genes','CDS','Exons','lnc_RNA','rRNA','snRNA','tRNA','TE','Introns',"5' UTR","3' UTR"
+
 usage: python3 1_cg_ratio_ant_gff_introns_062921_v3.2.py <'directory name'>
 
 make a directory and then put the allc.tsv files into that directory
 
 input: allc.tsv files in the directory
-
-
 
 # 2_methyl_Metaplot_v2_for_Ant_070621.py
 
