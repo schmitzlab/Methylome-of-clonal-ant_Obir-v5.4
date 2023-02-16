@@ -11,7 +11,7 @@ import time
 #  information
 #  bedtools 2.29 >
 #  Input_files = [GENE ANNOTATION BED, GENOME BED, METHYLATION BED, OUTPREFIX]
-#  'gffbed/exon1_Obirgene.gff.bed' < gff.bed (gene annotation bed) file should be located in the /gffbed/ directory.
+#  'gffbed/exon1_Obirgene.gff.bed' < gff.bed (gene annotation bed) > file should be located in the /gffbed/ directory.
 
 
 Input_files   = sys.argv[1:5] 
@@ -171,7 +171,7 @@ mw_up_bed,mw_genebody_bed,mw_down_bed =  making_bin_updn(gff_minus,Input_files,u
 w_up_bed = pw_up_bed.cat(mw_up_bed,postmerge=False)
 w_down_bed = pw_down_bed.cat(mw_down_bed,postmerge=False)
 
-##2 body - exon1,intron1, ...
+##@@2 body - exon1,intron1, ...
 exon1,wbed_exon1,sExonList1 = mk_windowbed('gffbed/exon1_Obirgene.gff.bed')  #exonNum = 'exon1',  #file = 'gffbed/exon1_Obirgene.gff.bed'
 exon2,wbed_exon2,sExonList2 = mk_windowbed('gffbed/exon2_Obirgene.gff.bed')
 exon3,wbed_exon3,sExonList3 = mk_windowbed('gffbed/exon3_Obirgene.gff.bed')
@@ -182,9 +182,8 @@ intron2,wbed_intron2,sIntronList2 = mk_windowbed('gffbed/intron2_Obirgene.gff.be
 intron3,wbed_intron3,sIntronList3 = mk_windowbed('gffbed/intron3_Obirgene.gff.bed')
 intronN,wbed_intronN,sIntronListN = mk_windowbed('gffbed/intronN_Obirgene.gff.bed')
 print('Making bin',time.ctime())
-
 #print(w_up_bed)
-
+##@@2 end
 
 ##3 read and match mC tsv file
 mC         = pd.read_table(Input_files[2],header=None)  # tsv.bed (allC )
@@ -194,6 +193,7 @@ print('Locating mC',time.ctime())
 table_w_up_inter = mk_table(w_up_bed,mC_bed)
 table_w_down_inter = mk_table(w_down_bed,mC_bed)
 
+##@@2
 table_exon1 = mk_table(wbed_exon1,mC_bed)
 table_exon2 = mk_table(wbed_exon2,mC_bed)
 table_exon3 = mk_table(wbed_exon3,mC_bed)
@@ -203,7 +203,7 @@ table_intron1 = mk_table(wbed_intron1,mC_bed)
 table_intron2 = mk_table(wbed_intron2,mC_bed)
 table_intron3 = mk_table(wbed_intron3,mC_bed)
 table_intronN = mk_table(wbed_intronN,mC_bed)
-
+##@@2 end
 
 ##4 make bin level
 print('cal methyl level',time.ctime())
@@ -211,6 +211,7 @@ print('cal methyl level',time.ctime())
 Up_CG_df,Up_CHG_df,Up_CHH_df = make_bin_level(table_w_up_inter,  'up',Gene_id_ls) #input: matched and merged bed, up, gene list
 Dw_CG_df,Dw_CHG_df,Dw_CHH_df = make_bin_level(table_w_down_inter,'dw',Gene_id_ls)
 
+##@@2
 cg_e1,chg_e1,chh_e1 = make_bin_level(table_exon1,'e1',Gene_id_ls)
 cg_e2,chg_e2,chh_e2 = make_bin_level(table_exon2,'e2',Gene_id_ls)
 cg_e3,chg_e3,chh_e3 = make_bin_level(table_exon3,'e3',Gene_id_ls)
@@ -220,7 +221,7 @@ cg_i1,chg_i1,chh_i1 = make_bin_level(table_intron1,'i1',Gene_id_ls)
 cg_i2,chg_i2,chh_i2 = make_bin_level(table_intron2,'i2',Gene_id_ls)
 cg_i3,chg_i3,chh_i3 = make_bin_level(table_intron3,'i3',Gene_id_ls)
 cg_iN,chg_iN,chh_iN = make_bin_level(table_intronN,'iN',Gene_id_ls)
-
+##@@2 end
 
 
 CG_df  = pd.concat([Up_CG_df,cg_e1,cg_i1,cg_e2,cg_i2,cg_e3,cg_i3,cg_e4,cg_iN,cg_eN,Dw_CG_df],axis=1)  #concat?  up,body,dn merge
@@ -239,35 +240,6 @@ print('end',time.ctime())
 
 
 
-
-''' <CG_df>
-              up_1  up_2  up_3  up_4  up_5  up_6  up_7  up_8  up_9  up_10  bd_1  bd_2  bd_3  bd_4  bd_5  bd_6  bd_7  bd_8  bd_9  bd_10  dw_1  dw_2  dw_3  dw_4  dw_5  dw_6  dw_7  dw_8  dw_9  dw_10
-LOC105288151   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-LOC105288134   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-LOC113562166   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-LOC105288138   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-LOC105288140   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-...            ...   ...   ...   ...   ...   ...   ...   ...   ...    ...   ...   ...   ...   ...   ...   ...   ...   ...   ...    ...   ...   ...   ...   ...   ...   ...   ...   ...   ...    ...
-LOC105274780   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-LOC105274781   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-LOC105274810   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-LOC105274784   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-LOC105274785   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN    NaN
-'''
-
-''' <Up_CG_df>
-LOC105287908_9_CHG nan
-LOC105287908_9_CHH nan
-LOC105287908_10_CG nan
-LOC105287908_10_CHG nan
-LOC105287908_10_CHH nan
-LOC105287907_1_CG nan
-LOC105287907_1_CHG nan
-LOC105287907_1_CHH nan
-LOC105287907_2_CG nan
-LOC105287907_2_CHG nan
-LOC105287907_2_CHH nan
-'''
 
 
 
