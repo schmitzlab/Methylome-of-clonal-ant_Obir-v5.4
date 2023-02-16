@@ -13,6 +13,10 @@ output: output1_Obir_genesTE_CG_ratio_co5_intron_070121.txt
 
 # 2_methyl_Metaplot_v2_for_Ant_070621.py
 
-usage: python3 2_methyl_Metaplot_v2_for_Ant_070621.py <gff.bed file> <size.genome file> <tsv.cw.bed file> <OUTPREFIX>
+before use: make 'gffbed' directory, and then put all the <exons.gff.bed> and <intons.gff.bed> into that directory.
+the py file should be located right upstream of the 'gffbed' directory.
 
+usage: python3 2_methyl_Metaplot_v2_for_Ant_070621.py <gff.bed file> <size.genome file> <tsv.cw.bed file> <OUTPREFIX>
+usage example: python3 2_methyl_Metaplot_v2_for_Ant_070621.py <gff.bed file> <ObirSize_chr.genome> <sample_chr.tsv.cw.bed> <D1cat_M3ei20bin>
+  
 input: <> <ObirSize_chr.genome>
