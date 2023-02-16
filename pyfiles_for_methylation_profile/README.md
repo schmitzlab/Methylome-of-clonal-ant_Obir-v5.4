@@ -27,6 +27,13 @@ usage example: python3 2_methyl_Metaplot_v2_for_Ant_070621.py <chr_Obir_v5.4_gen
 
 output: output2_Kro_D1cat_M3ei20bin_metaplot_summary.txt
 
+
+
+# 3_DNA_methylation_Metaplot_cw_v2_github.py
+
+description: metaplot for genes or repeat/TEs
+
+same method with 2_methyl_Metaplot_v2_for_Ant_070621.py
   
   ##use <chr_Obir_v5.4_genomic11868.gff.bed> for gene analysis
   
