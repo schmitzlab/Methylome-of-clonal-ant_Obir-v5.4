@@ -26,3 +26,8 @@ usage example: python3 2_methyl_Metaplot_v2_for_Ant_070621.py <chr_Obir_v5.4_gen
 *check 'extract_intron' folder to find the <gff.bed> example files
 
 output: output2_Kro_D1cat_M3ei20bin_metaplot_summary.txt
+
+  
+  ##use <chr_Obir_v5.4_genomic11868.gff.bed> for gene analysis
+  
+  ##use <over100.Obir.repeat.NoUnknown.gff.bed> for repeat/TE analysis
